@@ -1,0 +1,90 @@
+---
+title: "18BCE080_PRAC8"
+author: "Ishan Tewari"
+date: "29/04/2021"
+output: html_document
+---
+
+
+Loading the iris dataset:
+```{r}
+library(datasets)
+data(iris)
+summary(iris)
+```
+
+
+Checking the shape and feature names of the dataset:
+```{r}
+print("Shape of IRIS dataset")
+dim(iris)
+print("Features of IRIS dataset")
+names(iris)
+```
+
+
+Exploring the structure of IRIS dataset.
+```{r}
+str(iris)
+```
+
+
+Exploring the entries of the dataset for 'virginica' species
+```{r}
+virginica = iris[iris['Species'] == "virginica", ]
+head(virginica)
+```
+
+Finding the mean and standard deviation for 'sepal width' and 'sepal length' for each type of species.
+```{r}
+print("Mean of sepal length")
+aggregate(x = iris$Sepal.Length,
+          by = list(iris$Species),
+          FUN = mean)
+print("Standard deviation of sepal length")
+aggregate(x = iris$Sepal.Length,
+          by = list(iris$Species),
+          FUN = sd)
+print("Mean of sepal width")
+aggregate(x = iris$Sepal.Width,
+          by = list(iris$Species),
+          FUN = mean)
+print("Standard deviation of sepal width")
+aggregate(x = iris$Sepal.Width,
+          by = list(iris$Species),
+          FUN = sd)
+```
+
+Plotting the histogram and box plot of 'sepal.length' variable.
+```{r}
+hist(iris$Sepal.Length, col = "skyblue", xlab = "Sepal Length", main = "Histogram of Sepal Length of Iris Dataset")
+boxplot(Sepal.Length  ~ Species, iris, main = "Boxplot of Sepal Length of iris dataset", col = "lightpink3")
+```
+Plotting the histogram and box plot of 'petal.length' variable.
+```{r}
+hist(iris$Petal.Length, col = "skyblue", xlab = "Petal Length", main = "Histogram of Petal Length of Iris Dataset")
+boxplot(Petal.Width  ~ Species, iris, main = "Boxplot of Petal Width of iris dataset", col = "lightpink3")
+```
+
+Plotting the correlation amongst the attributes in the dataset.
+```{r}
+library(corrplot)
+corelation = cor(iris[, 1:4])
+corrplot(corelation, method='circle')
+```
+Draw the pie chart for species attribute.
+```{r}
+table(iris$Species)
+pie(table(iris$Species), main = "Pie Chart of the Iris data set Species",
+    col = c("orange1", "chocolate", "coral"), radius = 1)
+```
+
+Export the plot created in one of the cells as a .png file.
+```{r}
+jpeg("prac8_1.jpg")
+hist(iris$Sepal.Length, col = "skyblue", xlab = "Sepal Length", main = "Histogram of Sepal Length of Iris Dataset")
+dev.off()
+jpeg("prac8_2.jpg")
+boxplot(Sepal.Length  ~ Species, iris, main = "Boxplot of Sepal Length of iris dataset", col = "lightpink3")
+dev.off()
+```

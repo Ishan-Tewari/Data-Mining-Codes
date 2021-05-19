@@ -1,0 +1,65 @@
+---
+title: "18BCE080_PRAC9"
+author: "Ishan Tewari"
+date: "29/04/2021"
+output: html_document
+---
+
+
+
+
+Loading iris dataset
+```{r}
+library(datasets)
+data(iris)
+summary(iris)
+```
+
+Loading necessary libraries for decision tree classifier
+```{r}
+library(rpart)
+library(rpart.plot)
+```
+
+```{r}
+v = iris['Species']
+
+table(v)
+set.seed(522)
+
+# runif function returns a uniform distribution which can be further conditionally split into 75-25 ratio
+iris[, 'train'] = ifelse(runif(nrow(iris)) < 0.75, 1, 0)
+
+# Dividing the data into training and testing set
+trainSet = iris[iris['train'] == 1,]
+testSet = iris[iris['train'] == 0, ]
+
+trainColNum = grep('train', names(trainSet))
+
+trainSet = trainSet[, -trainColNum]
+testSet = testSet[, -trainColNum]
+
+print(trainSet)
+print(testSet)
+```
+```{r}
+treeFit = rpart(Species~.,data=trainSet,method = 'class')
+print(treeFit)
+```
+
+```{r}
+rpart.plot(treeFit, box.col=c("lightslateblue", "mediumorchid1"))
+
+Prediction1 = predict(treeFit,newdata=testSet[-5],type = 'class')
+```
+
+
+```{r}
+print(Prediction1)
+```
+
+
+```{r}
+library(caret)
+confusionMatrix(Prediction1,testSet$Species)
+```

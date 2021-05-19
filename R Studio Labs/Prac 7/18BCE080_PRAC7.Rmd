@@ -1,0 +1,92 @@
+---
+title: "18BCE080_PRAC7"
+author: "Ishan Tewari"
+date: "29/04/2021"
+output: html_document
+---
+
+```{r}
+x = c(5,2,1,4)
+y = rep(1,5)
+
+print(x)
+print(y)
+
+```
+
+
+Part - 1
+```{r}
+print(sum(x))
+print(range(x))
+print(length(y))
+print(sum(y))
+print(c(x,y,13))
+print(x[4] * y[2])
+print(x[2:4] * y[1:3])
+print(x <= 2)
+print(x[x <= 2])
+print(rep(1:4,2))
+print(rep(1:4,each=2))
+print(rep(1:4,c(2,2,2,2)))
+print(rep(1:4,c(2,2,2,1)))
+print(rep(1:4,each=2,len=10))
+print(2:3^2)
+print(seq(2,-3) * c(-1,1))
+```
+
+
+Part - 2
+```{r}
+a = LETTERS[1:3]
+
+print(a)
+
+print(paste('V',a,sep=":"))
+print(nchar(paste(a,collapse = '<')))
+```
+
+
+Part - 3
+```{r}
+u = c(TRUE,FALSE,TRUE,TRUE)
+
+print(!u)
+print(u | !u)
+print(any(u))
+```
+
+
+Part - 4
+```{r}
+x = seq(10,0)
+print(x)
+
+y = seq(1,10) ^ 2
+y = rep(y,each=3)
+print(y)
+
+z = letters[1:16]
+print(z)
+
+q = seq(1,16)
+print(q)
+
+p = paste(z,q,sep='')
+print(p)
+```
+
+
+Part - 5
+```{r}
+x = seq(5.5,15,0.5)
+print(x)
+m1 = matrix(x,2,10,byrow = TRUE)
+print(m1)
+
+m2 = t(m1)
+print(m2)
+
+print(m1 %*% m2)
+
+```
